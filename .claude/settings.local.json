@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(cd \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\"; Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 5; \"HTTP $\\($r.StatusCode\\) — OK\" } catch { \"Server not yet responding: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000/public/shraddha-saburi-story.mp4\" -Method Head -UseBasicParsing -TimeoutSec 5; \"Video endpoint: HTTP $\\($r.StatusCode\\) — Content-Length $\\($r.Headers['Content-Length']\\) bytes\" } catch { \"Video error: $_\" })",
+      "PowerShell(Start-Process \"http://localhost:3000\")",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -Confirm:$false; Start-Sleep -Milliseconds 500; Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 5; \"HTTP $\\($r.StatusCode\\) — server restarted OK\" } catch { \"Error: $_\" })",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 3; \"Already running — HTTP $\\($r.StatusCode\\)\" } catch { \"Not running\" })",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\index.html\"   \"C:\\\\Users\\\\hp\\\\Desktop\\\\shraddha saburi stone new website\\\\index.html\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\server.js\"    \"C:\\\\Users\\\\hp\\\\Desktop\\\\shraddha saburi stone new website\\\\server.js\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\package.json\" \"C:\\\\Users\\\\hp\\\\Desktop\\\\shraddha saburi stone new website\\\\package.json\")",
+      "PowerShell(Copy-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\" \"C:\\\\Users\\\\hp\\\\Desktop\\\\shraddha saburi stone new website\\\\public\" -Recurse)",
+      "PowerShell(Start-Process -FilePath \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\shraddha saburi stone new website\" -WindowStyle Hidden; Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:3001\" -UseBasicParsing -TimeoutSec 5; \"HTTP $\\($r.StatusCode\\) — new site live on port 3001\" } catch { \"Error: $_\" })",
+      "PowerShell(Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force -Confirm:$false; Start-Sleep -Milliseconds 500; Start-Process powershell -ArgumentList '-NoExit', '-Command', \"cd 'C:\\\\Users\\\\hp\\\\Desktop\\\\new web'; node server.js\" -WindowStyle Normal; Start-Sleep -Milliseconds 800; Start-Process \"http://localhost:3000\")",
+      "PowerShell(Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force -Confirm:$false; Start-Sleep -Milliseconds 500; Start-Process powershell -ArgumentList '-NoExit','-Command',\"cd 'C:\\\\Users\\\\hp\\\\Desktop\\\\new web'; node server.js\" -WindowStyle Normal; Start-Sleep -Milliseconds 900; Start-Process \"http://localhost:3000\")",
+      "PowerShell(Invoke-RestMethod \"http://localhost:3000/api/assets/temple-projects\")",
+      "PowerShell(cmd /c \"dir \"\"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\temple-projects\"\"\")",
+      "PowerShell(Start-Process \"http://localhost:3000/category?cat=temple-projects\")"
+    ]
+  }
+}

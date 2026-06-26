@@ -1,0 +1,606 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#030303">
+<meta property="og:image" content="https://www.shraddhasaburistone.com/public/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.shraddhasaburistone.com/public/og-image.jpg">
+<title>Shraddha Saburi Stone — Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#D9B062;--ink:#030303}
+html{background:var(--ink);scroll-behavior:auto}
+body{background:var(--ink);color:#fff;overflow-x:hidden;font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased}
+*{cursor:none!important}
+
+/* ── Cursor ── */
+#cursor-ring{position:fixed;top:0;left:0;width:38px;height:38px;border:1.5px solid rgba(217,176,98,0.65);border-radius:50%;pointer-events:none;z-index:99998;will-change:transform;transition:width .4s ease,height .4s ease,opacity .4s ease;opacity:0}
+#cursor-ring.visible{opacity:1}
+#cursor-ring.hover{width:58px;height:58px;border-color:var(--gold)}
+#cursor-dot{position:fixed;top:0;left:0;width:5px;height:5px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;will-change:transform;opacity:0;transition:opacity .4s ease}
+#cursor-dot.visible{opacity:1}
+
+/* ── Page cover (transition) ── */
+#page-cover{position:fixed;inset:0;background:var(--ink);z-index:9999;transform-origin:right;pointer-events:none}
+
+/* ── Header ── */
+#cat-header{position:fixed;top:0;left:0;right:0;height:124px;display:flex;align-items:center;justify-content:space-between;padding:0 52px;z-index:200;background:rgba(3,3,3,0.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(217,176,98,0.07)}
+#back-btn{display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,0.45);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;transition:color .3s ease}
+#back-btn:hover{color:var(--gold)}
+#back-btn svg{width:14px;height:14px;fill:currentColor}
+#cat-header-logo{display:flex;align-items:center}
+/* ── Hero ── */
+#cat-hero{min-height:62vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;padding:0 72px 80px;margin-top:64px}
+@media(max-width:768px){#cat-hero{padding:0 28px 60px;min-height:52vh}}
+@media(max-width:480px){#cat-hero{padding:0 16px 44px;min-height:44vh}}
+@media(max-width:768px){#cat-hero-title{font-size:clamp(36px,8vw,60px)}}
+@media(max-width:480px){#cat-hero-sub{letter-spacing:.08em}}
+#cat-hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);transition:transform 6s ease}
+#cat-hero-veil{position:absolute;inset:0;background:linear-gradient(to top,rgba(3,3,3,0.92) 0%,rgba(3,3,3,0.50) 50%,rgba(3,3,3,0.18) 100%)}
+#cat-hero-content{position:relative;z-index:2;max-width:900px}
+#cat-hero-eyebrow{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:var(--gold);letter-spacing:.38em;text-transform:uppercase;opacity:.7;margin-bottom:18px}
+#cat-hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,6vw,88px);font-weight:300;color:#fff;letter-spacing:.05em;line-height:1.0;margin-bottom:18px}
+#cat-hero-sub{font-family:'Inter',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,.38);letter-spacing:.16em;text-transform:uppercase}
+
+/* ── Section wrapper ── */
+.cat-section{padding:100px 60px;position:relative}
+@media(max-width:768px){.cat-section{padding:70px 20px}}
+@media(max-width:480px){.cat-section{padding:52px 14px}}
+.cat-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,rgba(217,176,98,0.4),transparent)}
+.cat-sec-head{text-align:center;margin-bottom:64px}
+.cat-sec-eyebrow{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:var(--gold);letter-spacing:.35em;text-transform:uppercase;opacity:.7;margin-bottom:14px}
+.cat-sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4vw,54px);font-weight:300;color:#fff;letter-spacing:.07em}
+.cat-sec-title em{font-style:italic;color:var(--gold)}
+
+/* ── Image gallery ── */
+#img-section{background:#06050A}
+.img-grid{columns:3;column-gap:3px;max-width:1440px;margin:0 auto}
+@media(max-width:1024px){.img-grid{columns:2}}
+@media(max-width:560px){.img-grid{columns:1}}
+.img-item{break-inside:avoid;display:block;position:relative;overflow:hidden;margin-bottom:3px;cursor:pointer;opacity:0;transform:translateY(24px)}
+.img-item img{width:100%;height:auto;display:block;transition:transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94)}
+.img-item:hover img{transform:scale(1.05)}
+.img-item-veil{position:absolute;inset:0;background:rgba(3,3,3,0);transition:background .4s ease;display:flex;align-items:center;justify-content:center}
+.img-item:hover .img-item-veil{background:rgba(3,3,3,.35)}
+.img-item-veil svg{width:36px;height:36px;opacity:0;transition:opacity .4s ease;fill:#fff}
+.img-item:hover .img-item-veil svg{opacity:1}
+.empty-state{text-align:center;padding:80px 20px;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:rgba(255,255,255,.2);letter-spacing:.06em;font-style:italic;columns:initial}
+
+/* ── Video gallery ── */
+#vid-section{background:#030303}
+.vid-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:1440px;margin:0 auto}
+@media(max-width:1024px){.vid-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.vid-grid{grid-template-columns:1fr}}
+.vid-item{position:relative;aspect-ratio:16/9;overflow:hidden;cursor:pointer;opacity:0;transform:translateY(24px);background:#0a0a0a}
+.vid-thumb{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.1s cubic-bezier(0.25,0.46,0.45,0.94)}
+.vid-item:hover .vid-thumb{transform:scale(1.05)}
+.vid-veil{position:absolute;inset:0;background:rgba(3,3,3,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;transition:background .4s ease}
+.vid-item:hover .vid-veil{background:rgba(3,3,3,.3)}
+.vid-play{width:56px;height:56px;border:1.5px solid rgba(217,176,98,.7);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color .3s ease,transform .3s ease}
+.vid-item:hover .vid-play{border-color:var(--gold);transform:scale(1.1)}
+.vid-play svg{width:18px;height:18px;fill:var(--gold);margin-left:3px}
+.vid-name{font-family:'Inter',sans-serif;font-size:10px;font-weight:400;color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase}
+.vid-frame{position:absolute;inset:0;border:1px solid transparent;transition:border-color .4s ease;pointer-events:none}
+.vid-item:hover .vid-frame{border-color:rgba(217,176,98,.2)}
+
+/* ── Enquiry section ── */
+#cat-enquiry{background:#06050A;padding:100px 60px;text-align:center;position:relative}
+#cat-enquiry::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:80px;background:linear-gradient(to bottom,transparent,rgba(217,176,98,0.4),transparent)}
+.enq-title{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,4.5vw,60px);font-weight:300;color:#fff;letter-spacing:.06em;margin-bottom:18px}
+.enq-title em{font-style:italic;color:var(--gold)}
+.enq-sub{font-family:'Inter',sans-serif;font-size:12px;font-weight:300;color:rgba(255,255,255,.3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:44px}
+.enq-btn{display:inline-flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;color:#030303;background:#25D366;padding:16px 44px;transition:background .3s ease,transform .3s ease}
+.enq-btn:hover{background:#1ebe5a;transform:translateY(-2px)}
+.enq-btn svg{width:16px;height:16px;fill:#030303}
+
+/* ── Lightbox ── */
+#lightbox{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:10000;display:none;align-items:center;justify-content:center;padding:40px}
+#lightbox.open{display:flex}
+#lb-img{max-width:90vw;max-height:85vh;object-fit:contain;display:block}
+#lb-close{position:absolute;top:24px;right:32px;font-family:'Inter',sans-serif;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:8px;transition:color .3s ease}
+#lb-close:hover{color:var(--gold)}
+#lb-prev,#lb-next{position:absolute;top:50%;transform:translateY(-50%);width:44px;height:44px;border:1px solid rgba(217,176,98,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;background:none;transition:border-color .3s ease,background .3s ease}
+#lb-prev{left:32px}
+#lb-next{right:32px}
+#lb-prev:hover,#lb-next:hover{border-color:var(--gold);background:rgba(217,176,98,.08)}
+#lb-prev svg,#lb-next svg{width:16px;height:16px;fill:rgba(217,176,98,.8)}
+#lb-count{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-family:'Inter',sans-serif;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.2em}
+
+/* ── Video modal ── */
+#vid-modal{position:fixed;inset:0;background:rgba(0,0,0,.97);z-index:10001;display:none;align-items:center;justify-content:center}
+#vid-modal.open{display:flex}
+#vm-video{max-width:90vw;max-height:88vh;display:block;outline:none}
+#vm-close{position:absolute;top:24px;right:32px;font-family:'Inter',sans-serif;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.2em;text-transform:uppercase;cursor:pointer;background:none;border:none;padding:8px;transition:color .3s ease}
+#vm-close:hover{color:var(--gold)}
+
+/* ── WhatsApp ── */
+#whatsapp{position:fixed;bottom:36px;right:52px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:300;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.28);transition:transform .35s cubic-bezier(0.34,1.56,0.64,1),box-shadow .35s ease}
+#whatsapp:hover{transform:scale(1.14);box-shadow:0 8px 36px rgba(37,211,102,.52)}
+#whatsapp svg{width:26px;height:26px;fill:#fff}
+
+/* ── Inquiry System ── */
+#inquiry-fab{position:fixed;bottom:108px;left:44px;z-index:400;display:flex;align-items:center;gap:10px;font-family:'Inter',sans-serif;font-size:9px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;color:#030303;background:var(--gold);border:none;padding:13px 24px;cursor:none!important;box-shadow:0 4px 30px rgba(217,176,98,.3);transition:background .35s ease,transform .35s ease,box-shadow .35s ease;opacity:0}
+#inquiry-fab.visible{opacity:1}
+#inquiry-fab:hover{background:#ECC870;transform:translateY(-3px);box-shadow:0 10px 44px rgba(217,176,98,.42)}
+#inquiry-fab svg{width:12px;height:12px;fill:#030303}
+#inquiry-overlay{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:2000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .4s ease}
+#inquiry-overlay.open{opacity:1;pointer-events:auto}
+#inquiry-modal{background:rgba(6,5,10,.97);border:1px solid rgba(217,176,98,.14);width:100%;max-width:960px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 300px;position:relative;transform:translateY(40px) scale(.98);transition:transform .5s cubic-bezier(0.25,0.46,0.45,0.94)}
+#inquiry-overlay.open #inquiry-modal{transform:translateY(0) scale(1)}
+#inq-close{position:absolute;top:18px;right:20px;width:32px;height:32px;background:none;border:1px solid rgba(217,176,98,.15);color:rgba(255,255,255,.4);font-size:14px;cursor:none!important;z-index:10;display:flex;align-items:center;justify-content:center;transition:border-color .3s ease,color .3s ease}
+#inq-close:hover{border-color:rgba(217,176,98,.5);color:var(--gold)}
+#inq-success{position:absolute;inset:0;background:rgba(6,5,10,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;z-index:20;opacity:0;pointer-events:none;transition:opacity .4s ease}
+#inq-success.show{opacity:1;pointer-events:auto}
+.inq-check-circle{width:72px;height:72px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 0 40px rgba(217,176,98,.2)}
+.inq-check-circle svg{width:32px;height:32px;fill:none;stroke:var(--gold);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.inq-success-heading{font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:#fff;letter-spacing:.06em}
+.inq-success-sub{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,.35);letter-spacing:.16em;text-transform:uppercase}
+.inq-left{padding:52px 48px}
+.inq-eyebrow{font-family:'Inter',sans-serif;font-size:9px;font-weight:400;color:var(--gold);letter-spacing:.38em;text-transform:uppercase;opacity:.7;margin-bottom:14px}
+.inq-heading{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,3vw,42px);font-weight:300;color:#fff;letter-spacing:.05em;margin-bottom:8px}
+.inq-heading em{font-style:italic;color:var(--gold)}
+.inq-sub{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,.32);letter-spacing:.04em;line-height:1.7;margin-bottom:38px}
+.inq-row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.inq-field{margin-bottom:22px}
+.inq-label{display:block;font-family:'Inter',sans-serif;font-size:9px;font-weight:400;color:rgba(217,176,98,.6);letter-spacing:.22em;text-transform:uppercase;margin-bottom:8px}
+.inq-input,.inq-select,.inq-textarea{width:100%;background:rgba(255,255,255,.03);border:none;border-bottom:1px solid rgba(217,176,98,.14);color:rgba(255,255,255,.82);font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:300;letter-spacing:.03em;padding:10px 0;outline:none;transition:border-color .35s ease;-webkit-appearance:none}
+.inq-input:focus,.inq-select:focus,.inq-textarea:focus{border-color:rgba(217,176,98,.5)}
+.inq-input::placeholder,.inq-textarea::placeholder{color:rgba(255,255,255,.18);font-size:15px}
+.inq-select{cursor:none!important;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(217,176,98,0.5)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 4px center;padding-right:22px}
+.inq-select option{background:#06050A;color:#fff}
+.inq-textarea{resize:none;height:72px;line-height:1.6}
+.inq-contact-label{font-family:'Inter',sans-serif;font-size:9px;color:rgba(217,176,98,.6);letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px;display:block}
+.inq-radio-group{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+.inq-radio-item{position:relative}
+.inq-radio-item input[type="radio"]{position:absolute;opacity:0;width:0;height:0}
+.inq-radio-label{display:flex;align-items:center;gap:7px;font-family:'Inter',sans-serif;font-size:9.5px;font-weight:400;color:rgba(255,255,255,.38);letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(217,176,98,.12);padding:9px 18px;cursor:none!important;transition:color .3s ease,border-color .3s ease,background .3s ease}
+.inq-radio-item input[type="radio"]:checked+.inq-radio-label{color:#030303;background:var(--gold);border-color:var(--gold)}
+.inq-submit{width:100%;font-family:'Inter',sans-serif;font-size:10px;font-weight:400;letter-spacing:.28em;text-transform:uppercase;color:#030303;background:var(--gold);border:none;padding:17px 32px;cursor:none!important;position:relative;overflow:hidden;transition:background .35s ease,transform .35s ease}
+.inq-submit:hover{background:#ECC870;transform:translateY(-2px)}
+.inq-right{background:rgba(3,3,3,.6);border-left:1px solid rgba(217,176,98,.08);padding:52px 36px;display:flex;flex-direction:column}
+.inq-right-eyebrow{font-family:'Inter',sans-serif;font-size:9px;font-weight:400;color:var(--gold);letter-spacing:.38em;text-transform:uppercase;opacity:.7;margin-bottom:28px}
+.inq-company{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:300;color:#fff;letter-spacing:.08em;margin-bottom:20px;line-height:1.3}
+.inq-divider{width:32px;height:1px;background:rgba(217,176,98,.3);margin:24px 0}
+.inq-address{font-family:'Inter',sans-serif;font-size:11px;font-weight:300;color:rgba(255,255,255,.32);line-height:1.9;letter-spacing:.04em;margin-bottom:32px}
+.inq-phone-block{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.inq-call-btn{display:flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:10px;font-weight:400;letter-spacing:.14em;color:rgba(255,255,255,.65);background:rgba(217,176,98,.06);border:1px solid rgba(217,176,98,.14);padding:13px 18px;text-decoration:none;cursor:none!important;transition:background .3s ease,border-color .3s ease,color .3s ease}
+.inq-call-btn:hover{background:rgba(217,176,98,.12);border-color:rgba(217,176,98,.35);color:var(--gold)}
+.inq-call-btn svg{width:14px;height:14px;fill:var(--gold);flex-shrink:0}
+.inq-num{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:300;color:#fff;letter-spacing:.04em}
+.inq-wa-btn{display:flex;align-items:center;gap:12px;font-family:'Inter',sans-serif;font-size:10px;font-weight:400;letter-spacing:.14em;color:#fff;background:rgba(37,211,102,.12);border:1px solid rgba(37,211,102,.25);padding:13px 18px;text-decoration:none;cursor:none!important;transition:background .3s ease}
+.inq-wa-btn:hover{background:rgba(37,211,102,.22)}
+.inq-wa-btn svg{width:16px;height:16px;fill:#25D366;flex-shrink:0}
+.inq-tagline{margin-top:auto;padding-top:28px;font-family:'Cormorant Garamond',serif;font-size:13px;font-weight:300;font-style:italic;color:rgba(217,176,98,.22);letter-spacing:.04em;line-height:1.6;border-top:1px solid rgba(217,176,98,.07)}
+@media(max-width:760px){#inquiry-modal{grid-template-columns:1fr}.inq-right{border-left:none;border-top:1px solid rgba(217,176,98,.08);padding:36px 28px}.inq-left{padding:44px 28px 28px}.inq-row{grid-template-columns:1fr;gap:0}#inquiry-fab{bottom:96px;left:20px;padding:11px 18px}}
+/* ── Enquiry & header responsive ─────────────────────────── */
+@media(max-width:768px){#cat-header{padding:0 20px}#cat-enquiry{padding:70px 20px}.enq-title{font-size:clamp(26px,7vw,44px)}}
+@media(max-width:480px){#cat-enquiry{padding:52px 14px}#whatsapp{bottom:20px;right:16px;width:46px;height:46px}#inquiry-fab{bottom:76px;left:14px}}
+/* ── Safe area (notched phones) ───────────────────────────── */
+@supports(padding:max(0px)){#cat-header{padding-left:max(52px,env(safe-area-inset-left));padding-right:max(52px,env(safe-area-inset-right))}#whatsapp{bottom:max(36px,calc(env(safe-area-inset-bottom)+16px));right:max(52px,calc(env(safe-area-inset-right)+16px))}#inquiry-fab{bottom:max(108px,calc(env(safe-area-inset-bottom)+80px))}}
+</style>
+</head>
+<body>
+
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+<div id="page-cover"></div>
+
+<header id="cat-header">
+    <a id="back-btn" href="/">
+        <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+        Back
+    </a>
+    <span id="cat-header-logo">
+        <img src="/public/logo-full.png" alt="Shraddha Saburi Stone — The Temple of Trust & Craftsmanship" style="height:110px;width:auto;display:block;object-fit:contain;max-width:800px;">
+    </span>
+</header>
+
+<section id="cat-hero">
+    <div id="cat-hero-bg"></div>
+    <div id="cat-hero-veil"></div>
+    <div id="cat-hero-content">
+        <div id="cat-hero-eyebrow"></div>
+        <h1 id="cat-hero-title"></h1>
+        <div id="cat-hero-sub"></div>
+    </div>
+</section>
+
+<section id="img-section" class="cat-section">
+    <div class="cat-sec-head">
+        <div class="cat-sec-eyebrow">Photography</div>
+        <h2 class="cat-sec-title">Image <em>Gallery</em> &nbsp;<span id="img-count-label" style="font-size:0.55em;opacity:0.5;letter-spacing:0.1em"></span></h2>
+    </div>
+    <div class="img-grid" id="img-grid"></div>
+</section>
+
+<section id="vid-section" class="cat-section">
+    <div class="cat-sec-head">
+        <div class="cat-sec-eyebrow">Films</div>
+        <h2 class="cat-sec-title">Video <em>Gallery</em> &nbsp;<span id="vid-count-label" style="font-size:0.55em;opacity:0.5;letter-spacing:0.1em"></span></h2>
+    </div>
+    <div class="vid-grid" id="vid-grid"></div>
+</section>
+
+<section id="cat-enquiry">
+    <h2 class="enq-title" id="enq-title">Interested in<br><em>This Collection?</em></h2>
+    <p class="enq-sub">Speak with our team about your project requirements</p>
+    <a href="https://wa.me/919649299121" class="enq-btn" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp Enquiry
+    </a>
+</section>
+
+<!-- ════════════════ REQUEST QUOTE BUTTON ══════════════════ -->
+<button id="inquiry-fab" onclick="openInquiry()">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    Request Quote
+</button>
+
+<!-- ════════════════ INQUIRY MODAL ══════════════════════════ -->
+<div id="inquiry-overlay" onclick="if(event.target===this)closeInquiry()">
+    <div id="inquiry-modal">
+        <button id="inq-close" onclick="closeInquiry()" aria-label="Close">✕</button>
+        <div id="inq-success">
+            <div class="inq-check-circle"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="inq-success-heading">Inquiry Sent!</div>
+            <div class="inq-success-sub">Opening WhatsApp…</div>
+        </div>
+        <div class="inq-left">
+            <div class="inq-eyebrow">Project Inquiry</div>
+            <h2 class="inq-heading">Start Your <em>Project</em></h2>
+            <p class="inq-sub">Tell us about your vision and our team will contact you within 24 hours.</p>
+            <form id="inquiry-form" onsubmit="submitInquiry(event)">
+                <div class="inq-row">
+                    <div class="inq-field"><label class="inq-label">Full Name *</label><input class="inq-input" id="inq-name" type="text" placeholder="Your full name" required></div>
+                    <div class="inq-field"><label class="inq-label">Phone Number *</label><input class="inq-input" id="inq-phone" type="tel" placeholder="+91 00000 00000" required></div>
+                </div>
+                <div class="inq-row">
+                    <div class="inq-field"><label class="inq-label">City</label><input class="inq-input" id="inq-city" type="text" placeholder="Your city"></div>
+                    <div class="inq-field"><label class="inq-label">State</label><input class="inq-input" id="inq-state" type="text" placeholder="Your state"></div>
+                </div>
+                <div class="inq-field">
+                    <label class="inq-label">Project Type *</label>
+                    <select class="inq-select" id="inq-project" required>
+                        <option value="" disabled selected>Select project type</option>
+                        <option>Temple Construction</option><option>Jali Design</option><option>Decorative Pillars</option>
+                        <option>Stone Cladding</option><option>Custom Carving</option><option>Heritage Architecture</option>
+                        <option>Infrastructure Project</option><option>Other</option>
+                    </select>
+                </div>
+                <div class="inq-field"><label class="inq-label">Project Description</label><textarea class="inq-textarea" id="inq-desc" placeholder="Describe your project, requirements or vision…"></textarea></div>
+                <div class="inq-field">
+                    <label class="inq-label">Budget Range</label>
+                    <select class="inq-select" id="inq-budget">
+                        <option value="" disabled selected>Select budget range</option>
+                        <option>Below ₹1 Lakh</option><option>₹1–5 Lakh</option><option>₹5–10 Lakh</option>
+                        <option>₹10–25 Lakh</option><option>₹25 Lakh+</option>
+                    </select>
+                </div>
+                <label class="inq-contact-label">Preferred Contact Method</label>
+                <div class="inq-radio-group">
+                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="WhatsApp" checked><span class="inq-radio-label">WhatsApp</span></label>
+                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="Phone Call"><span class="inq-radio-label">Phone Call</span></label>
+                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="Email"><span class="inq-radio-label">Email</span></label>
+                </div>
+                <button type="submit" class="inq-submit">Send Inquiry via WhatsApp →</button>
+            </form>
+        </div>
+        <div class="inq-right">
+            <div class="inq-right-eyebrow">Contact Us</div>
+            <div class="inq-company">Shraddha Saburi<br>Stone</div>
+            <div class="inq-divider"></div>
+            <div class="inq-address">G-15, RIICO Industrial Area,<br>Kishangarh RIICO,<br>Jaisalmer, Rajasthan,<br>India</div>
+            <div class="inq-phone-block">
+                <a class="inq-wa-btn" href="https://wa.me/919649299121" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <span>WhatsApp · <span class="inq-num">9649299121</span></span>
+                </a>
+                <a class="inq-call-btn" href="tel:+919649299121"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>Call · <span class="inq-num">9649299121</span></span></a>
+                <a class="inq-call-btn" href="tel:+917023912171"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>Alternate · <span class="inq-num">7023912171</span></span></a>
+            </div>
+            <div class="inq-tagline">"Every stone tells a story. We ensure it becomes a masterpiece."</div>
+        </div>
+    </div>
+</div>
+
+<a id="whatsapp" href="https://wa.me/919649299121" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- Lightbox -->
+<div id="lightbox">
+    <button id="lb-close">Close ✕</button>
+    <button id="lb-prev"><svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg></button>
+    <img id="lb-img" src="" alt="">
+    <button id="lb-next"><svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg></button>
+    <div id="lb-count"></div>
+</div>
+
+<!-- Video modal -->
+<div id="vid-modal">
+    <button id="vm-close">Close ✕</button>
+    <video id="vm-video" controls playsinline></video>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const CAT = new URLSearchParams(location.search).get('cat') || '';
+function slugToTitle(s) { return s.replace(/-/g,' ').replace(/\b\w/g,c=>c.toUpperCase()); }
+const CAT_INFO_OVERRIDE = {
+    'temple-projects':       { title:'Temple Projects',       sub:'Sacred Stone Architecture' },
+    'jali-designs':          { title:'Jali Designs',          sub:'Intricate Stone Lattice' },
+    'decorative-pillars':    { title:'Decorative Pillars',    sub:'Structural Artistry' },
+    'heritage-architecture': { title:'Heritage Architecture', sub:'Timeless Traditions' },
+    'stone-cladding':        { title:'Stone Cladding',        sub:'Surface Excellence' },
+    'custom-carvings':       { title:'Custom Carvings',       sub:'Bespoke Craftsmanship' },
+    'export-materials':      { title:'Export Materials',      sub:'International Grade Sandstone' },
+};
+const CAT_ALT_POOL = {
+    'temple-projects':      ['Handcrafted Jaisalmer sandstone temple construction','Traditional stone mandir architecture in yellow sandstone','Premium sandstone temple carving and stonework','Heritage temple stone design with intricate carvings','Sacred stone temple work by Rajasthan artisans','Custom stone mandir pillars and temple elements','Rajasthan sandstone temple project — artisan craftsmanship','Ornate sandstone temple facade construction'],
+    'jali-designs':         ['Intricate Jaisalmer sandstone jali screen design','CNC-cut stone jali lattice in golden sandstone','Traditional stone jali cutwork — heritage pattern','Decorative sandstone jali partition for interior use','Hand-carved stone jali screen with floral motif','Premium sandstone jali for architecture and decor','Custom stone lattice jali window design','Rajasthan stone jali — architectural stonework'],
+    'decorative-pillars':   ['Hand-carved Jaisalmer sandstone decorative pillar','Ornate stone column with traditional Rajasthani motifs','Premium sandstone architectural pillar — custom design','Heritage style stone column for temple and haveli','Decorative stone pillar with intricate floral carving','Rajasthan sandstone column — structural and artistic','Custom stone pillar installation by craftsmen','Traditional carved sandstone pillar for commercial projects'],
+    'heritage-architecture':['Jaisalmer sandstone heritage architecture facade','Traditional Rajasthan haveli restoration stonework','Heritage building renovation with golden yellow sandstone','Classic Indian sandstone architectural stonework','Haveli-style stone facade panel — Rajputana design','Premium sandstone for heritage architecture restoration','Traditional stone building construction in Rajasthan','Rajasthani heritage architecture in Jaisalmer sandstone'],
+    'stone-cladding':       ['Jaisalmer yellow sandstone wall cladding panel','Premium stone cladding for exterior building facade','Natural sandstone interior wall cladding design','Stone cladding installation — luxury architectural project','Decorative sandstone wall panel for modern interiors','Exterior stone cladding in Rajasthan yellow sandstone','Custom sandstone wall cladding for residential use','High-quality sandstone facade cladding — architectural grade'],
+    'custom-carvings':      ['Custom hand-carved Jaisalmer sandstone sculpture','CNC stone carving — intricate sandstone artwork','Bespoke sandstone carving for architectural application','Traditional stone engraving in yellow Jaisalmer sandstone','Handcrafted sandstone decorative carving by Rajasthan artisan','Premium sandstone carving for temple and home decor','Artisan stone carving — custom design in yellow sandstone','Fine sandstone carving work by skilled craftsmen'],
+    'export-materials':     ['Export-quality Jaisalmer yellow sandstone slab','Premium sandstone block for international construction export','Natural Jaisalmer sandstone ready for global shipping','High-grade sandstone for export — India origin certified','Jaisalmer yellow sandstone bulk export material','Rajasthan sandstone export — premium grade stone block','Raw sandstone slab for international construction projects','Premium quality sandstone — export ready from Rajasthan India'],
+};
+const info = CAT_INFO_OVERRIDE[CAT] || { title: slugToTitle(CAT) || 'Collection', sub:'Premium Jaisalmer Sandstone' };
+const PAGE_TITLE = `${info.title} — Shraddha Saburi Stone`;
+const PAGE_URL   = `https://www.shraddhasaburistone.com/category?cat=${encodeURIComponent(CAT)}`;
+const PAGE_DESC  = `Explore our ${info.title} collection — premium Jaisalmer sandstone ${info.sub.toLowerCase()} by Shraddha Saburi Stone, Rajasthan, India.`;
+document.title = PAGE_TITLE;
+/* Inject SEO meta tags dynamically */
+(function injectMeta() {
+    const add = (attrs) => { const m = document.createElement('meta'); Object.entries(attrs).forEach(([k,v])=>m.setAttribute(k,v)); document.head.appendChild(m); };
+    const addLink = (attrs) => { const l = document.createElement('link'); Object.entries(attrs).forEach(([k,v])=>l.setAttribute(k,v)); document.head.appendChild(l); };
+    add({ name:'description', content: PAGE_DESC });
+    add({ name:'robots', content:'index, follow' });
+    addLink({ rel:'canonical', href: PAGE_URL });
+    add({ property:'og:type', content:'website' });
+    add({ property:'og:url', content: PAGE_URL });
+    add({ property:'og:title', content: PAGE_TITLE });
+    add({ property:'og:description', content: PAGE_DESC });
+    add({ property:'og:site_name', content:'Shraddha Saburi Stone' });
+    add({ property:'og:locale', content:'en_IN' });
+    add({ name:'twitter:card', content:'summary_large_image' });
+    add({ name:'twitter:title', content: PAGE_TITLE });
+    add({ name:'twitter:description', content: PAGE_DESC });
+    /* BreadcrumbList JSON-LD */
+    const s = document.createElement('script'); s.type = 'application/ld+json';
+    s.textContent = JSON.stringify({ '@context':'https://schema.org', '@type':'BreadcrumbList', 'itemListElement':[
+        { '@type':'ListItem', position:1, name:'Home', item:'https://www.shraddhasaburistone.com/' },
+        { '@type':'ListItem', position:2, name:'Gallery', item:'https://www.shraddhasaburistone.com/#categories' },
+        { '@type':'ListItem', position:3, name: info.title, item: PAGE_URL }
+    ]});
+    document.head.appendChild(s);
+})();
+document.title = PAGE_TITLE;
+document.getElementById('cat-hero-eyebrow').textContent = info.sub;
+document.getElementById('cat-hero-title').textContent   = info.title;
+document.getElementById('cat-hero-sub').textContent     = 'Premium Jaisalmer Sandstone · Rajasthan, India';
+document.getElementById('enq-title').innerHTML = `Interested in<br><em>${info.title}?</em>`;
+
+let allImages = [], allVideos = [];
+
+async function loadAssets() {
+    try {
+        const d = await (await fetch(`/api/assets/${CAT}`)).json();
+        allImages = d.images; allVideos = d.videos;
+    } catch {}
+    if (allImages.length) {
+        const bg = document.getElementById('cat-hero-bg');
+        bg.style.backgroundImage = `url('${allImages[0]}')`;
+        setTimeout(() => bg.style.transform = 'scale(1)', 200);
+    }
+    buildImageGallery();
+    buildVideoGallery();
+}
+loadAssets();
+
+function buildImageGallery() {
+    const grid = document.getElementById('img-grid');
+    const lbl  = document.getElementById('img-count-label');
+    if (lbl) lbl.textContent = allImages.length ? `${allImages.length} Photos` : '';
+    if (!allImages.length) { grid.innerHTML = '<div class="empty-state">Images coming soon…</div>'; return; }
+    allImages.forEach((src, i) => {
+        const item = document.createElement('div'); item.className = 'img-item';
+        const pool = CAT_ALT_POOL[CAT] || [];
+        const base = pool.length ? pool[i % pool.length] : `${info.title} in Jaisalmer sandstone`;
+        const altText = `${base} — Image ${i + 1} | Shraddha Saburi Stone`;
+        item.innerHTML = `<img src="${src}" alt="${altText}" loading="lazy"><div class="img-item-veil"><svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg></div>`;
+        item.addEventListener('click', () => openLightbox(i));
+        grid.appendChild(item);
+        gsap.to(item, { opacity:1, y:0, duration:1.0, ease:'power3.out', delay:(i%6)*0.06,
+            scrollTrigger:{ trigger:item, start:'top 90%', once:true } });
+    });
+}
+
+function extractThumbnail(src) {
+    return new Promise(resolve => {
+        const v = document.createElement('video');
+        v.preload = 'metadata'; v.muted = true; v.playsInline = true; v.src = src;
+        v.addEventListener('loadedmetadata', () => { v.currentTime = Math.min(1, v.duration * 0.1 || 1); });
+        v.addEventListener('seeked', () => {
+            try {
+                const c = document.createElement('canvas');
+                c.width = v.videoWidth || 640; c.height = v.videoHeight || 360;
+                c.getContext('2d').drawImage(v, 0, 0, c.width, c.height);
+                resolve(c.toDataURL('image/jpeg', 0.8));
+            } catch { resolve(''); }
+            v.src = '';
+        });
+        v.addEventListener('error', () => resolve(''));
+        v.load();
+    });
+}
+
+async function buildVideoGallery() {
+    const section = document.getElementById('vid-section');
+    const grid    = document.getElementById('vid-grid');
+    const lbl     = document.getElementById('vid-count-label');
+    if (!allVideos.length) { section.style.display = 'none'; return; }
+    if (lbl) lbl.textContent = `${allVideos.length} Films`;
+    for (let i = 0; i < allVideos.length; i++) {
+        const src = allVideos[i];
+        const fname = decodeURIComponent(src.split('/').pop().replace(/\.[^.]+$/, '').replace(/[-_]/g,' '));
+        const item = document.createElement('div'); item.className = 'vid-item';
+        item.innerHTML = `<div class="vid-thumb"></div>
+            <div class="vid-veil">
+                <div class="vid-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+                <div class="vid-name">${fname}</div>
+            </div><div class="vid-frame"></div>`;
+        item.addEventListener('click', () => openVideoModal(src));
+        grid.appendChild(item);
+        gsap.to(item, { opacity:1, y:0, duration:1.0, ease:'power3.out', delay:(i%3)*0.1,
+            scrollTrigger:{ trigger:item, start:'top 90%', once:true } });
+        extractThumbnail(src).then(dataUrl => {
+            if (dataUrl) item.querySelector('.vid-thumb').style.backgroundImage = `url('${dataUrl}')`;
+        });
+    }
+}
+
+/* Lightbox */
+let lbIdx = 0;
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-count');
+function openLightbox(idx) {
+    lbIdx = idx; lbImg.src = allImages[lbIdx];
+    lbCount.textContent = `${lbIdx+1} / ${allImages.length}`;
+    lb.classList.add('open'); document.body.style.overflow = 'hidden';
+}
+function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+function lbNav(dir) {
+    lbIdx = ((lbIdx+dir)+allImages.length) % allImages.length;
+    lbImg.src = allImages[lbIdx]; lbCount.textContent = `${lbIdx+1} / ${allImages.length}`;
+}
+document.getElementById('lb-close').addEventListener('click', closeLightbox);
+document.getElementById('lb-prev').addEventListener('click', () => lbNav(-1));
+document.getElementById('lb-next').addEventListener('click', () => lbNav(1));
+lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+document.addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key==='ArrowLeft') lbNav(-1);
+    if (e.key==='ArrowRight') lbNav(1);
+    if (e.key==='Escape') closeLightbox();
+});
+
+/* Video modal */
+const vm = document.getElementById('vid-modal');
+const vmVid = document.getElementById('vm-video');
+function openVideoModal(src) { vmVid.src=src; vm.classList.add('open'); vmVid.play(); document.body.style.overflow='hidden'; }
+function closeVideoModal() { vmVid.pause(); vmVid.src=''; vm.classList.remove('open'); document.body.style.overflow=''; }
+document.getElementById('vm-close').addEventListener('click', closeVideoModal);
+vm.addEventListener('click', e => { if (e.target===vm) closeVideoModal(); });
+document.addEventListener('keydown', e => { if (e.key==='Escape' && vm.classList.contains('open')) closeVideoModal(); });
+
+/* Page entrance */
+gsap.fromTo('#page-cover', { scaleX:1 }, { scaleX:0, duration:0.85, ease:'power3.inOut', delay:0.05 });
+gsap.fromTo('#cat-hero-content > *', { opacity:0, y:32 }, { opacity:1, y:0, duration:1.2, stagger:0.15, ease:'power3.out', delay:0.45 });
+gsap.fromTo('#img-section .cat-sec-head > *', { opacity:0, y:28 }, { opacity:1, y:0, duration:1.2, stagger:0.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'#img-section', start:'top 82%', once:true } });
+gsap.fromTo('#vid-section .cat-sec-head > *', { opacity:0, y:28 }, { opacity:1, y:0, duration:1.2, stagger:0.12, ease:'power3.out',
+    scrollTrigger:{ trigger:'#vid-section', start:'top 82%', once:true } });
+gsap.fromTo('.enq-title, .enq-sub, .enq-btn', { opacity:0, y:28 }, { opacity:1, y:0, duration:1.2, stagger:0.14, ease:'power3.out',
+    scrollTrigger:{ trigger:'#cat-enquiry', start:'top 82%', once:true } });
+
+/* Custom cursor */
+const cRing=document.getElementById('cursor-ring'), cDot=document.getElementById('cursor-dot');
+const RING_HALF=19, DOT_HALF=2.5, EASE=0.11;
+let mx=-200,my=-200,rx=-200,ry=-200;
+document.addEventListener('mousemove', e => {
+    mx=e.clientX; my=e.clientY;
+    cDot.style.transform=`translate(${mx-DOT_HALF}px,${my-DOT_HALF}px)`;
+    if (!cDot.classList.contains('visible')) { cDot.classList.add('visible'); cRing.classList.add('visible'); }
+});
+document.addEventListener('mouseleave', () => { cDot.classList.remove('visible'); cRing.classList.remove('visible'); });
+document.querySelectorAll('a,button,.img-item,.vid-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cRing.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cRing.classList.remove('hover'));
+});
+(function cursorLoop() {
+    rx+=(mx-rx)*EASE; ry+=(my-ry)*EASE;
+    cRing.style.transform=`translate(${rx-RING_HALF}px,${ry-RING_HALF}px)`;
+    requestAnimationFrame(cursorLoop);
+})();
+
+/* Back button with page transition */
+document.getElementById('back-btn').addEventListener('click', e => {
+    e.preventDefault();
+    gsap.to('#page-cover', { scaleX:1, duration:0.55, ease:'power3.inOut', onComplete:() => location.href='/' });
+});
+
+/* ── Inquiry System ── */
+const _fab=document.getElementById('inquiry-fab'),_overlay=document.getElementById('inquiry-overlay'),_success=document.getElementById('inq-success');
+setTimeout(()=>_fab&&_fab.classList.add('visible'),1000);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeInquiry()});
+function openInquiry(){_overlay.classList.add('open');document.body.style.overflow='hidden';_success.classList.remove('show');gsap.fromTo('.inq-left > *, .inq-right > *',{opacity:0,y:18},{opacity:1,y:0,duration:0.6,stagger:0.06,ease:'power2.out',delay:0.2});}
+function closeInquiry(){_overlay.classList.remove('open');document.body.style.overflow='';}
+function submitInquiry(e){
+    e.preventDefault();
+    const name=document.getElementById('inq-name').value.trim(),phone=document.getElementById('inq-phone').value.trim(),city=document.getElementById('inq-city').value.trim(),state=document.getElementById('inq-state').value.trim(),project=document.getElementById('inq-project').value,desc=document.getElementById('inq-desc').value.trim(),budget=document.getElementById('inq-budget').value,method=document.querySelector('input[name="contact_method"]:checked')?.value||'WhatsApp';
+    const location=[city,state].filter(Boolean).join(', ')||'Not specified';
+    const msg=['🏛️ *PROJECT INQUIRY — SHRADDHA SABURI STONE*','',`👤 *Name:* ${name}`,`📱 *Phone:* ${phone}`,`📍 *Location:* ${[city,state].filter(Boolean).join(', ')||'Not specified'}`,`🔨 *Project Type:* ${project||'Not specified'}`,`💰 *Budget:* ${budget||'Not specified'}`,`📞 *Preferred Contact:* ${method}`,'',`📝 *Description:*`,desc||'No description provided.','','─────────────────────','Sent via ShraddhaSaburiStone.com'].join('\n');
+    _success.classList.add('show');
+    gsap.fromTo('#inq-success .inq-check-circle',{scale:0,opacity:0},{scale:1,opacity:1,duration:.55,ease:'back.out(2)'});
+    gsap.fromTo('#inq-success .inq-success-heading, #inq-success .inq-success-sub',{opacity:0,y:14},{opacity:1,y:0,duration:.5,stagger:.12,ease:'power2.out',delay:.3});
+    setTimeout(()=>{window.open('https://wa.me/919649299121?text='+encodeURIComponent(msg),'_blank');setTimeout(closeInquiry,800);},1400);
+    setTimeout(()=>{document.getElementById('inquiry-form').reset();_success.classList.remove('show');},3500);
+}
+/* also wire enquiry button on page */
+document.querySelector('.enq-btn')?.addEventListener('click',e=>{e.preventDefault();openInquiry();});
+</script>
+
+<style>
+/* ── Image Protection Toast ───────────────────────────────── */
+#img-protect-toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(16px);background:rgba(3,3,3,0.96);border:1px solid rgba(217,176,98,0.28);color:rgba(255,255,255,0.72);font-family:'Inter',sans-serif;font-size:11px;letter-spacing:0.1em;padding:14px 28px;opacity:0;transition:opacity 0.35s ease,transform 0.35s ease;z-index:99999;pointer-events:none;backdrop-filter:blur(14px);white-space:nowrap;border-radius:2px}
+#img-protect-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#img-protect-toast span{color:#D9B062}
+
+/* ── Watermark overlay on masonry gallery images ──────────── */
+.img-item{position:relative}
+.img-item::after{content:'';position:absolute;inset:0;z-index:4;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='160'%3E%3Ctext transform='rotate(-35 140 80)' x='-40' y='68' font-family='Arial,sans-serif' font-size='10' font-weight='700' fill='%23D9B062' opacity='0.13' letter-spacing='3'%3ESHRADDHA SABURI STONE%3C/text%3E%3Ctext transform='rotate(-35 140 80)' x='5' y='84' font-family='Arial,sans-serif' font-size='8.5' fill='%23D9B062' opacity='0.10' letter-spacing='1'%3E7023912171  9414149121%3C/text%3E%3C/svg%3E");background-repeat:repeat;background-size:280px 160px}
+</style>
+
+<script>
+/* ── Image Protection System ──────────────────────────────── */
+(function(){
+    let _t;
+    function showToast(){
+        let t=document.getElementById('img-protect-toast');
+        if(!t){t=document.createElement('div');t.id='img-protect-toast';t.innerHTML='Images are protected by <span>SHRADDHA SABURI STONE</span>.';document.body.appendChild(t);}
+        clearTimeout(_t);
+        requestAnimationFrame(()=>t.classList.add('show'));
+        _t=setTimeout(()=>t.classList.remove('show'),3200);
+    }
+    document.addEventListener('contextmenu',e=>{
+        if(e.target.tagName==='IMG'||e.target.closest('.img-item,.vid-item,.cat-hero-bg')){e.preventDefault();showToast();}
+    });
+    document.addEventListener('dragstart',e=>{
+        if(e.target.tagName==='IMG'){e.preventDefault();showToast();}
+    },true);
+    document.addEventListener('keydown',e=>{
+        const ctrl=e.ctrlKey||e.metaKey,k=e.key.toUpperCase();
+        const block=(ctrl&&k==='S')||(ctrl&&k==='U')||(ctrl&&k==='A')||(ctrl&&k==='C')||(ctrl&&e.shiftKey&&k==='I')||(ctrl&&e.shiftKey&&k==='J')||(ctrl&&e.shiftKey&&k==='C')||e.key==='F12';
+        if(block){e.preventDefault();if(ctrl&&(k==='S'||k==='C'||k==='A'||k==='U'))showToast();}
+    });
+    document.addEventListener('selectstart',e=>{
+        if(e.target.tagName==='IMG'||e.target.closest('.img-item'))e.preventDefault();
+    });
+})();
+</script>
+</body>
+</html>
+
+
+

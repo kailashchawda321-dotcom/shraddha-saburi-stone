@@ -1,0 +1,45 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Process -Name node -ErrorAction SilentlyContinue | Stop-Process -Force -Confirm:$false; Start-Sleep -Milliseconds 500; Start-Process powershell -ArgumentList '-NoExit','-Command',\"cd 'C:\\\\Users\\\\hp\\\\Desktop\\\\new web'; node server.js\" -WindowStyle Normal; Start-Sleep -Milliseconds 900; Start-Process \"http://localhost:3000\")",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\index.html\" -Pattern \"wa\\\\.me/91\" | ForEach-Object { $_.Line.Trim\\(\\) })",
+      "PowerShell(Select-String -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\index.html\",\"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\category.html\" -Pattern \"wa\\\\.me/91\" | ForEach-Object { \"$\\($_.Filename\\):$\\($_.LineNumber\\) — $\\($_.Line.Trim\\(\\)\\)\" })",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\seo\")",
+      "PowerShell(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\infra-hero\")",
+      "PowerShell(Remove-Item -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\videos\\\\infrastructure\" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "PowerShell(Remove-Item -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\infra-hero\" -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue)",
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\infra-hero\" -Force)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\infra-hero\\\\\" | Where-Object { -not $_.PSIsContainer } | Select-Object Name, Length)",
+      "PowerShell(Start-Process \"http://localhost:3000/#infrastructure\")",
+      "PowerShell(Start-Process \"chrome.exe\" -ArgumentList \"http://localhost:3000\" -ErrorAction SilentlyContinue)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 3 -UseBasicParsing; \"OK: $\\($r.StatusCode\\)\" } catch { \"DOWN\" })",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Stop-Process -Force -Confirm:$false)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing -TimeoutSec 5; Write-Host \"OK $\\($r.StatusCode\\)\" } catch { Write-Host \"Error: $_\" })",
+      "Read(//c/Users/hp/Desktop/shraddha saburi stone new website/**)",
+      "PowerShell(Start-Process \"http://localhost:3000/pick-location.html\")",
+      "WebFetch(domain:maps.app.goo.gl)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 800; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; try { $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing; \"Status: $\\($r.StatusCode\\) | Size: $\\($r.Content.Length\\) bytes\" } catch { \"Error: $_\" })",
+      "Skill(run)",
+      "Skill(run:*)",
+      "PowerShell($d = \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\"; if \\(Test-Path \"$d\\\\.claude\\\\skills\"\\) { Get-ChildItem \"$d\\\\.claude\\\\skills\" -Recurse -Filter \"SKILL.md\" | Select-Object FullName } else { \"No project skills found\" })",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 600; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing; \"Server OK — $\\($r.StatusCode\\), $\\($r.Content.Length\\) bytes\")",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 600; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing; \"Status: $\\($r.StatusCode\\) | Size: $\\($r.Content.Length\\) bytes\" ; if \\($r.Content -match 'ScrollToPlugin'\\) { \"ScrollToPlugin: FOUND\" } else { \"ScrollToPlugin: MISSING\" })",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 600; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing; \"Status: $\\($r.StatusCode\\) | Size: $\\($r.Content.Length\\) bytes\")",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 600; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing; \"OK $\\($r.StatusCode\\)\")",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 500; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; \\(Invoke-WebRequest -Uri \"http://localhost:3000\" -TimeoutSec 8 -UseBasicParsing\\).StatusCode)",
+      "PowerShell(New-Item -ItemType Directory -Path \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\\\\export-materials\" -Force)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 500; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; \\(Invoke-WebRequest -Uri \"http://localhost:3000/api/categories\" -UseBasicParsing\\).Content)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 500; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; $r = Invoke-WebRequest -Uri \"http://localhost:3000/sitemap.xml\" -UseBasicParsing; \\($r.Content | Select-String \"seo/\" -AllMatches\\).Matches.Count)",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\seo\\\\\" | Select-Object Name, LastWriteTime, @{n='KB';e={[math]::Round\\($_.Length/1KB,1\\)}} | Sort-Object LastWriteTime)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue; Start-Sleep -Milliseconds 500; Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden; Start-Sleep -Seconds 2; \\(Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing\\).StatusCode)",
+      "PowerShell(Stop-Process -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden -RedirectStandardOutput \"C:\\\\Users\\\\hp\\\\AppData\\\\Local\\\\Temp\\\\wm-log3.txt\" -RedirectStandardError \"C:\\\\Users\\\\hp\\\\AppData\\\\Local\\\\Temp\\\\wm-err3.txt\")",
+      "PowerShell($reg = Get-Content \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\.wm-registry.json\" | ConvertFrom-Json; $entries = \\($reg | Get-Member -MemberType NoteProperty\\).Count; Write-Host \"Registry: $entries entries\"; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing; Write-Host \"Server: HTTP $\\($r.StatusCode\\)\")",
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\" -Recurse -File | Where-Object { $_.Extension -match \"\\\\.\\(jpg|jpeg|png|webp\\)$\" } | Group-Object DirectoryName | Select-Object Name, Count | Sort-Object Name)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\hp\\.claude\\projects\\c--Users-hp-Desktop-new-web"
+    ]
+  }
+}
