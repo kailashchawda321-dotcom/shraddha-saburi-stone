@@ -1,0 +1,10 @@
+DROP YOUR INFRASTRUCTURE SHOWCASE IMAGES HERE
+=============================================
+
+These images appear in the INFRASTRUCTURE SECTION on the homepage.
+
+- Drop any JPG / PNG / WEBP images here
+- Each image = one card on the homepage
+- First 6 images get specific labels (Factory, CNC Machines, Stone Yard, etc.)
+- Any additional images get a generic "Infrastructure" label automatically
+- No code changes needed — just drop and refresh

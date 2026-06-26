@@ -1,0 +1,15 @@
+{
+  "name": "Shraddha Saburi Stone",
+  "short_name": "SSS Stone",
+  "description": "Premium Jaisalmer Sandstone Manufacturer & Exporter",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#030303",
+  "theme_color": "#D9B062",
+  "icons": [
+    { "src": "/public/favicon-16x16.png",  "sizes": "16x16",   "type": "image/png" },
+    { "src": "/public/favicon-32x32.png",  "sizes": "32x32",   "type": "image/png" },
+    { "src": "/public/favicon-192.png",    "sizes": "192x192", "type": "image/png" },
+    { "src": "/public/apple-touch-icon.png","sizes": "180x180","type": "image/png" }
+  ]
+}

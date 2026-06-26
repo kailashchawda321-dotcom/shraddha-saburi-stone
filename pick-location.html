@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Pick Your Location</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: Arial, sans-serif; background:#111; color:#fff; height:100vh; display:flex; flex-direction:column; }
+  #map { flex:1; }
+  #panel {
+    background:#1a1a1a; border-top:2px solid #d4af37;
+    padding:14px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  #panel h3 { color:#d4af37; font-size:14px; white-space:nowrap; }
+  #coords { font-size:13px; color:#fff; background:#111; padding:8px 14px; border-radius:4px; min-width:260px; }
+  #copy-btn {
+    background:#d4af37; color:#000; border:none; padding:9px 20px;
+    font-size:12px; font-weight:bold; border-radius:4px; cursor:pointer; white-space:nowrap;
+  }
+  #copy-btn:hover { background:#f0cc55; }
+  #status { font-size:12px; color:#aaa; }
+  #instruction {
+    background:#d4af37; color:#000; text-align:center;
+    padding:10px; font-size:13px; font-weight:bold;
+  }
+</style>
+</head>
+<body>
+
+<div id="instruction">👆 Click exactly on your business location on the map below, then copy the coordinates</div>
+<div id="map"></div>
+<div id="panel">
+  <h3>Selected Location:</h3>
+  <div id="coords">Click on the map to select location...</div>
+  <button id="copy-btn" onclick="copyCoords()">Copy Coordinates</button>
+  <span id="status"></span>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  // Centered on Jaisalmer
+  const map = L.map('map').setView([26.9157, 70.9083], 14);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors', maxZoom: 19
+  }).addTo(map);
+
+  // Add satellite layer option
+  const satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: '© Esri', maxZoom: 19
+  });
+  L.control.layers({'Street Map': L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:19}).addTo(map), 'Satellite': satellite}).addTo(map);
+
+  let marker = null;
+  let selectedLat = null, selectedLng = null;
+
+  map.on('click', function(e) {
+    selectedLat = e.latlng.lat.toFixed(6);
+    selectedLng = e.latlng.lng.toFixed(6);
+
+    if (marker) map.removeLayer(marker);
+    marker = L.marker(e.latlng).addTo(map)
+      .bindPopup(`<b>Shraddha Saburi Stone</b><br>Lat: ${selectedLat}<br>Lng: ${selectedLng}`).openPopup();
+
+    document.getElementById('coords').textContent = `${selectedLat}, ${selectedLng}`;
+    document.getElementById('status').textContent = '';
+  });
+
+  function copyCoords() {
+    if (!selectedLat) { alert('Please click on the map first!'); return; }
+    const text = `${selectedLat},${selectedLng}`;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('status').textContent = '✅ Copied! Paste it to Claude.';
+    });
+  }
+</script>
+</body>
+</html>
