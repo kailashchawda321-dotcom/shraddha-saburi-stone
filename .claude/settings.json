@@ -36,7 +36,12 @@
       "PowerShell(Stop-Process -Force -ErrorAction SilentlyContinue)",
       "PowerShell(Start-Process \"node\" -ArgumentList \"server.js\" -WorkingDirectory \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\" -WindowStyle Hidden -RedirectStandardOutput \"C:\\\\Users\\\\hp\\\\AppData\\\\Local\\\\Temp\\\\wm-log3.txt\" -RedirectStandardError \"C:\\\\Users\\\\hp\\\\AppData\\\\Local\\\\Temp\\\\wm-err3.txt\")",
       "PowerShell($reg = Get-Content \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\.wm-registry.json\" | ConvertFrom-Json; $entries = \\($reg | Get-Member -MemberType NoteProperty\\).Count; Write-Host \"Registry: $entries entries\"; $r = Invoke-WebRequest -Uri \"http://localhost:3000\" -UseBasicParsing; Write-Host \"Server: HTTP $\\($r.StatusCode\\)\")",
-      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\" -Recurse -File | Where-Object { $_.Extension -match \"\\\\.\\(jpg|jpeg|png|webp\\)$\" } | Group-Object DirectoryName | Select-Object Name, Count | Sort-Object Name)"
+      "PowerShell(Get-ChildItem \"C:\\\\Users\\\\hp\\\\Desktop\\\\new web\\\\public\\\\images\" -Recurse -File | Where-Object { $_.Extension -match \"\\\\.\\(jpg|jpeg|png|webp\\)$\" } | Group-Object DirectoryName | Select-Object Name, Count | Sort-Object Name)",
+      "Bash(git checkout *)",
+      "Bash(git branch *)",
+      "PowerShell(node -e \"const s = require\\('C:/Users/hp/Desktop/new web/node_modules/sharp/package.json'\\); console.log\\('version:', s.version\\); console.log\\('engines:', JSON.stringify\\(s.engines\\)\\); console.log\\('optionalDependencies:', JSON.stringify\\(s.optionalDependencies||{}\\)\\)\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\hp\\.claude\\projects\\c--Users-hp-Desktop-new-web"
