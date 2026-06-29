@@ -4124,11 +4124,12 @@ function paint(p) {
     const fw = frmA.width  ?? off.width;
     const fh = frmA.height ?? off.height;
     const cw = canvas.width, ch = canvas.height;
-    const coverSc = Math.max(cw / fw, ch / fh);
-    /* Portrait viewports: cap scale so horizontal crop stays ≤ 25% per side.
-       Canvas bg (#030303) fills any vertical space — invisible against page bg.
-       Landscape viewports: full cinematic cover, unchanged. */
-    const sc = (ch > cw) ? Math.min(coverSc, 2 * (cw / fw)) : coverSc;
+    /* Mobile: contain-fit — never crop the video; dark bg fills letterbox areas.
+       Desktop: cover-fit — cinematic full-bleed. */
+    const isMobilePaint = window.innerWidth <= 768;
+    const sc = isMobilePaint
+        ? Math.min(cw / fw, ch / fh)
+        : Math.max(cw / fw, ch / fh);
     const dw = fw * sc, dh = fh * sc;
     const dx = (cw - dw) / 2, dy = (ch - dh) / 2;
 
