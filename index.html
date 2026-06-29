@@ -649,6 +649,15 @@ body {
     filter: brightness(1.25) contrast(1.05);
 }
 
+/* ── HERO — MOBILE RESPONSIVE ─────────────────────────────── */
+@media (max-width: 768px) {
+    #canvas-sticky {
+        /* dvh adjusts dynamically as the browser chrome shows/hides,
+           preventing the canvas from being clipped by mobile browser UI */
+        height: 100dvh;
+    }
+}
+
 /* ── WHATSAPP ─────────────────────────────────────────────── */
 #whatsapp {
     position: fixed;
@@ -794,7 +803,7 @@ body {
     align-items: start;
     margin-bottom: 72px;
 }
-.about-col-left { }
+.about-col-left
 .about-company-name {
     font-family: 'Inter', sans-serif;
     font-size: 9px; font-weight: 400;
@@ -2268,6 +2277,7 @@ a.ftr-contact-text:hover { color: var(--gold); }
     padding: 10px 0; outline: none;
     transition: border-color .35s ease;
     -webkit-appearance: none;
+    appearance: none;
 }
 .inq-input:focus, .inq-select:focus, .inq-textarea:focus {
     border-color: rgba(217,176,98,0.5);
@@ -4004,7 +4014,12 @@ video.addEventListener('loadedmetadata', () => {
     off.width  = canvas.width;
     off.height = canvas.height;
 
-    const scale = Math.max(off.width / video.videoWidth, off.height / video.videoHeight);
+    /* Mobile (portrait) → contain-fit so full video is captured without cropping.
+       Desktop → cover-fit for cinematic full-bleed look. */
+    const isMobile = window.innerWidth <= 768;
+    const scale = isMobile
+        ? Math.min(off.width / video.videoWidth, off.height / video.videoHeight)
+        : Math.max(off.width / video.videoWidth, off.height / video.videoHeight);
     drawW = video.videoWidth  * scale;
     drawH = video.videoHeight * scale;
     drawX = (off.width  - drawW) / 2;
