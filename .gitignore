@@ -3,3 +3,10 @@ node_modules/
 Thumbs.db
 *.log
 .env
+
+# Large media files — deployed directly to VPS via SFTP
+public/*.mp4
+public/*.mov
+public/*.avi
+public/*.mkv
+public/*.webm
