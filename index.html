@@ -3971,10 +3971,7 @@ const SETTLE       = _onMobile ? 0.001 : 0.00004;
 const loadingEl   = document.getElementById('loading');
 const loadingFill = document.getElementById('loading-fill');
 const canvas      = document.getElementById('main-canvas');
-/* alpha:false removes alpha-channel compositing overhead.
-   desynchronized:true lets the GPU render without waiting
-   for the main thread — cuts input-to-paint latency.   */
-const ctx         = canvas.getContext('2d', { alpha: false, desynchronized: true });
+const ctx         = canvas.getContext('2d');
 const progFill    = document.getElementById('prog-fill');
 const hero        = document.getElementById('hero');
 
