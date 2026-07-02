@@ -3952,20 +3952,29 @@ sessionStorage.setItem('sss_visited', '1');
 
 /* ─── config ───────────────────────────────────────────── */
 const VIDEO_SRC    = '/public/shraddha-saburi-story.mp4';
-const MAX_FRAMES   = 300;    // more frames = silkier transitions
-const MIN_FRAMES   = 150;
 
-/* Lerp factor: how fast smoothProgress chases targetProgress.
-   0.04 → very cinematic / lazy / Apple-like.
-   Higher = snappier. Do not exceed 0.15.               */
-const LERP         = 0.04;
-const SETTLE       = 0.00004; // stop RAF loop when diff < this
+/* Detect mobile once — reused by config, paint, and capture */
+const _onMobile    = window.innerWidth <= 768;
+
+/* Mobile: fewer frames (faster extraction, less memory).
+   Desktop: more frames for silkier cross-dissolve.     */
+const MAX_FRAMES   = _onMobile ? 180 : 300;
+const MIN_FRAMES   = _onMobile ?  80 : 150;
+
+/* LERP: mobile uses 0.12 so the canvas keeps pace with the
+   finger — settles in ~0.8 s instead of 3-4 s.
+   Desktop keeps 0.04 for the cinematic glide feel.     */
+const LERP         = _onMobile ? 0.12 : 0.04;
+const SETTLE       = _onMobile ? 0.001 : 0.00004;
 
 /* ─── elements ─────────────────────────────────────────── */
 const loadingEl   = document.getElementById('loading');
 const loadingFill = document.getElementById('loading-fill');
 const canvas      = document.getElementById('main-canvas');
-const ctx         = canvas.getContext('2d');
+/* alpha:false removes alpha-channel compositing overhead.
+   desynchronized:true lets the GPU render without waiting
+   for the main thread — cuts input-to-paint latency.   */
+const ctx         = canvas.getContext('2d', { alpha: false, desynchronized: true });
 const progFill    = document.getElementById('prog-fill');
 const hero        = document.getElementById('hero');
 
@@ -3986,7 +3995,7 @@ let drawX = 0, drawY = 0, drawW = 0, drawH = 0;
 
 /* ─── canvas + offscreen ────────────────────────────────── */
 const off    = document.createElement('canvas');
-const offCtx = off.getContext('2d');
+const offCtx = off.getContext('2d', { alpha: false });
 
 function resizeCanvas() {
     canvas.width  = window.innerWidth;
@@ -4014,10 +4023,9 @@ video.addEventListener('loadedmetadata', () => {
     off.width  = canvas.width;
     off.height = canvas.height;
 
-    /* Mobile (portrait) → contain-fit so full video is captured without cropping.
-       Desktop → cover-fit for cinematic full-bleed look. */
-    const isMobile = window.innerWidth <= 768;
-    const scale = isMobile
+    /* Mobile → contain-fit (full video, no crop).
+       Desktop → cover-fit (cinematic full-bleed).  */
+    const scale = _onMobile
         ? Math.min(off.width / video.videoWidth, off.height / video.videoHeight)
         : Math.max(off.width / video.videoWidth, off.height / video.videoHeight);
     drawW = video.videoWidth  * scale;
@@ -4108,42 +4116,46 @@ video.addEventListener('error', () => {
     finishLoading();
 });
 
-/* ─── paint: cross-dissolve blend between adjacent frames ── */
+/* ─── paint: render current frame, blend on desktop only ─── */
 function paint(p) {
     const n = frames.length;
     if (!n) return;
 
     const exact = p * (n - 1);
     const idxA  = Math.min(Math.floor(exact), n - 1);
-    const idxB  = Math.min(idxA + 1, n - 1);
-    const blend = exact - idxA;
-
-    const frmA = frames[idxA];
+    const frmA  = frames[idxA];
     if (!frmA) return;
 
     const fw = frmA.width  ?? off.width;
     const fh = frmA.height ?? off.height;
     const cw = canvas.width, ch = canvas.height;
-    /* Mobile: contain-fit — never crop the video; dark bg fills letterbox areas.
-       Desktop: cover-fit — cinematic full-bleed. */
-    const isMobilePaint = window.innerWidth <= 768;
-    const sc = isMobilePaint
+    /* _onMobile cached at startup — no per-frame DOM read.
+       Mobile: contain-fit (full video, no crop).
+       Desktop: cover-fit (cinematic full-bleed).          */
+    const sc = _onMobile
         ? Math.min(cw / fw, ch / fh)
         : Math.max(cw / fw, ch / fh);
     const dw = fw * sc, dh = fh * sc;
     const dx = (cw - dw) / 2, dy = (ch - dh) / 2;
 
     ctx.clearRect(0, 0, cw, ch);
-    ctx.globalAlpha = 1;
     ctx.drawImage(frmA, dx, dy, dw, dh);
 
-    const frmB = frames[idxB];
-    if (frmB && idxB !== idxA && blend > 0.01) {
-        ctx.globalAlpha = blend;
-        ctx.drawImage(frmB, dx, dy, dw, dh);
+    /* Cross-dissolve blend: desktop only.
+       Skipping it on mobile halves the GPU draw calls per
+       frame and eliminates globalAlpha state changes —
+       the biggest single source of scroll jank on mobile. */
+    if (!_onMobile) {
+        const idxB  = Math.min(idxA + 1, n - 1);
+        const blend = exact - idxA;
+        const frmB  = frames[idxB];
+        if (frmB && idxB !== idxA && blend > 0.01) {
+            ctx.globalAlpha = blend;
+            ctx.drawImage(frmB, dx, dy, dw, dh);
+            ctx.globalAlpha = 1;
+        }
     }
 
-    ctx.globalAlpha = 1;
     currentFrame = idxA;
 }
 
