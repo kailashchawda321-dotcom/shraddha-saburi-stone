@@ -3958,14 +3958,14 @@ const _onMobile    = window.innerWidth <= 768;
 
 /* Mobile: fewer frames (faster extraction, less memory).
    Desktop: more frames for silkier cross-dissolve.     */
-const MAX_FRAMES   = _onMobile ? 180 : 300;
-const MIN_FRAMES   = _onMobile ?  80 : 150;
+const MAX_FRAMES   = _onMobile ? 220 : 300;
+const MIN_FRAMES   = _onMobile ? 100 : 150;
 
 /* LERP: mobile uses 0.12 so the canvas keeps pace with the
    finger — settles in ~0.8 s instead of 3-4 s.
    Desktop keeps 0.04 for the cinematic glide feel.     */
-const LERP         = _onMobile ? 0.12 : 0.04;
-const SETTLE       = _onMobile ? 0.001 : 0.00004;
+const LERP         = _onMobile ? 0.09 : 0.04;
+const SETTLE       = _onMobile ? 0.0008 : 0.00004;
 
 /* ─── elements ─────────────────────────────────────────── */
 const loadingEl   = document.getElementById('loading');
@@ -4138,19 +4138,13 @@ function paint(p) {
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(frmA, dx, dy, dw, dh);
 
-    /* Cross-dissolve blend: desktop only.
-       Skipping it on mobile halves the GPU draw calls per
-       frame and eliminates globalAlpha state changes —
-       the biggest single source of scroll jank on mobile. */
-    if (!_onMobile) {
-        const idxB  = Math.min(idxA + 1, n - 1);
-        const blend = exact - idxA;
-        const frmB  = frames[idxB];
-        if (frmB && idxB !== idxA && blend > 0.01) {
-            ctx.globalAlpha = blend;
-            ctx.drawImage(frmB, dx, dy, dw, dh);
-            ctx.globalAlpha = 1;
-        }
+    const idxB  = Math.min(idxA + 1, n - 1);
+    const blend = exact - idxA;
+    const frmB  = frames[idxB];
+    if (frmB && idxB !== idxA && blend > 0.01) {
+        ctx.globalAlpha = blend;
+        ctx.drawImage(frmB, dx, dy, dw, dh);
+        ctx.globalAlpha = 1;
     }
 
     currentFrame = idxA;
