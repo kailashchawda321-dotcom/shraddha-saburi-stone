@@ -41,7 +41,25 @@
       "Bash(git branch *)",
       "PowerShell(node -e \"const s = require\\('C:/Users/hp/Desktop/new web/node_modules/sharp/package.json'\\); console.log\\('version:', s.version\\); console.log\\('engines:', JSON.stringify\\(s.engines\\)\\); console.log\\('optionalDependencies:', JSON.stringify\\(s.optionalDependencies||{}\\)\\)\")",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(node server.js)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/)",
+      "Bash(node -e ' *)",
+      "Bash(npm install *)",
+      "Bash(npx playwright *)",
+      "Bash(where puppeteer *)",
+      "Bash(where chromium *)",
+      "Bash(where chrome *)",
+      "Bash(node -e \"require\\('puppeteer'\\)\")",
+      "Read(//c/Program Files/Google/Chrome/Application/**)",
+      "Read(//c/Program Files \\(x86\\)/Google/Chrome/**)",
+      "Read(//c/Users/hp/AppData/Local/Google/Chrome/**)",
+      "Read(//c/Users/hp/AppData/Local/Temp/claude/**)",
+      "Bash(ls \"f:/new web/.claude/\" 2>/dev/null *)",
+      "Read(//c/Users/hp/.ssh/**)",
+      "Bash(cat ~/.ssh/known_hosts 2>/dev/null | head -5 *)",
+      "Read(//c/Users/hp/.ssh//**)",
+      "Bash(git commit -m 'chore: save claude permission allowlist updates from session 7 *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\hp\\.claude\\projects\\c--Users-hp-Desktop-new-web"
