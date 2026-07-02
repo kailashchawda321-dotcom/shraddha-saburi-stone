@@ -651,6 +651,11 @@ body {
 
 /* ── HERO — MOBILE RESPONSIVE ─────────────────────────────── */
 @media (max-width: 768px) {
+    #hero {
+        /* Mobile: shorter scroll distance — thumb scrolling covers
+           more px per gesture than a mouse wheel on desktop */
+        height: 3500vh;
+    }
     #canvas-sticky {
         /* dvh adjusts dynamically as the browser chrome shows/hides,
            preventing the canvas from being clipped by mobile browser UI */
@@ -3951,7 +3956,7 @@ if (_alreadyVisited) {
 sessionStorage.setItem('sss_visited', '1');
 
 /* ─── config ───────────────────────────────────────────── */
-const VIDEO_SRC    = '/public/shraddha-saburi-story.mp4';
+const VIDEO_SRC    = '/public/shraddha-saburi-story.mp4?v=2';
 
 /* Detect mobile once — reused by config, paint, and capture */
 const _onMobile    = window.innerWidth <= 768;
