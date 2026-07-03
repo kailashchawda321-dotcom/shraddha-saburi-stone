@@ -2272,7 +2272,7 @@ a.ftr-contact-text:hover { color: var(--gold); }
 #inq-close:hover { border-color: rgba(217,176,98,0.5); color: var(--gold); }
 
 /* left form panel */
-.inq-left { padding: 52px 48px; }
+.inq-left { padding: 36px 48px 32px; }
 .inq-eyebrow {
     font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 400;
     color: var(--gold); letter-spacing: 0.38em; text-transform: uppercase; opacity: .7;
@@ -2287,10 +2287,10 @@ a.ftr-contact-text:hover { color: var(--gold); }
 .inq-sub {
     font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 300;
     color: rgba(255,255,255,0.32); letter-spacing: 0.04em; line-height: 1.7;
-    margin-bottom: 38px;
+    margin-bottom: 20px;
 }
 .inq-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 24px; }
-.inq-field { margin-bottom: 22px; }
+.inq-field { margin-bottom: 16px; }
 .inq-label {
     display: block; font-family: 'Inter', sans-serif; font-size: 9px; font-weight: 400;
     color: rgba(217,176,98,0.6); letter-spacing: 0.22em; text-transform: uppercase;
@@ -2312,7 +2312,7 @@ a.ftr-contact-text:hover { color: var(--gold); }
 .inq-input::placeholder, .inq-textarea::placeholder { color: rgba(255,255,255,0.18); font-size: 15px; }
 .inq-select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='rgba(217,176,98,0.5)' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 22px; }
 .inq-select option { background: #06050A; color: #fff; }
-.inq-textarea { resize: none; height: 72px; line-height: 1.6; }
+.inq-textarea { resize: none; height: 58px; line-height: 1.6; }
 .inq-contact-label {
     font-family: 'Inter', sans-serif; font-size: 9px; color: rgba(217,176,98,0.6);
     letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 12px; display: block;
@@ -3872,24 +3872,7 @@ a.ftr-contact-text:hover { color: var(--gold); }
                 </div>
                 <div class="inq-field">
                     <label class="inq-label">Project Description</label>
-                    <textarea class="inq-textarea" id="inq-desc" placeholder="Describe your project, requirements or vision…"></textarea>
-                </div>
-                <div class="inq-field">
-                    <label class="inq-label">Budget Range</label>
-                    <select class="inq-select" id="inq-budget">
-                        <option value="" disabled selected>Select budget range</option>
-                        <option>Below ₹1 Lakh</option>
-                        <option>₹1–5 Lakh</option>
-                        <option>₹5–10 Lakh</option>
-                        <option>₹10–25 Lakh</option>
-                        <option>₹25 Lakh+</option>
-                    </select>
-                </div>
-                <label class="inq-contact-label">Preferred Contact Method</label>
-                <div class="inq-radio-group">
-                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="WhatsApp" checked><span class="inq-radio-label">WhatsApp</span></label>
-                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="Phone Call"><span class="inq-radio-label">Phone Call</span></label>
-                    <label class="inq-radio-item"><input type="radio" name="contact_method" value="Email"><span class="inq-radio-label">Email</span></label>
+                    <textarea class="inq-textarea" id="inq-desc" placeholder="Describe your project, requirements, budget and vision…"></textarea>
                 </div>
                 <button type="submit" class="inq-submit">Send Inquiry via WhatsApp →</button>
             </form>
@@ -5118,9 +5101,6 @@ function submitInquiry(e) {
     const state   = document.getElementById('inq-state').value.trim();
     const project = document.getElementById('inq-project').value;
     const desc    = document.getElementById('inq-desc').value.trim();
-    const budget  = document.getElementById('inq-budget').value;
-    const method  = document.querySelector('input[name="contact_method"]:checked')?.value || 'WhatsApp';
-
     const location = [city, state].filter(Boolean).join(', ') || 'Not specified';
 
     const msg = [
@@ -5130,8 +5110,6 @@ function submitInquiry(e) {
         `📱 *Phone:* ${phone}`,
         `📍 *Location:* ${location}`,
         `🔨 *Project Type:* ${project || 'Not specified'}`,
-        `💰 *Budget:* ${budget || 'Not specified'}`,
-        `📞 *Preferred Contact:* ${method}`,
         '',
         `📝 *Description:*`,
         desc || 'No description provided.',
