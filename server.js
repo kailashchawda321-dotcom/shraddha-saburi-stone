@@ -71,7 +71,9 @@ const SEO_PAGES = [
     'jaisalmer-yellow-sandstone','cnc-stone-carving','temple-pillars',
     'stone-gazebo-chhatri','sandstone-wall-panels','temple-mandir-design',
     'jaisalmer-stone-exporter','sandstone-architectural-elements',
-    'jaisalmer-stone-manufacturer','jaisalmer-stone-supplier','landscape-garden-stone'
+    'jaisalmer-stone-manufacturer','jaisalmer-stone-supplier','landscape-garden-stone',
+    'jaisalmer-stone-price','sandstone-flooring','jaisalmer-stone-dubai',
+    'rajasthan-yellow-sandstone','sandstone-pool-coping','hotel-resort-stone'
 ];
 
 /* ══════════════════════════════════════════════════════════════
