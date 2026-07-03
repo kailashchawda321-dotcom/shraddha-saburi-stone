@@ -46,7 +46,9 @@ const SEO_PAGES = [
     /* new pages */
     'jaisalmer-yellow-sandstone', 'cnc-stone-carving', 'temple-pillars',
     'stone-gazebo-chhatri', 'sandstone-wall-panels', 'temple-mandir-design',
-    'jaisalmer-stone-exporter', 'sandstone-architectural-elements'
+    'jaisalmer-stone-exporter', 'sandstone-architectural-elements',
+    /* keyword-targeted pages */
+    'jaisalmer-stone-manufacturer', 'jaisalmer-stone-supplier', 'landscape-garden-stone'
 ];
 
 function listFiles(dir, extSet, urlBase) {
