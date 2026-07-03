@@ -961,17 +961,7 @@ ${entries}
 </urlset>`);
 });
 
-/* ── 404 page ────────────────────────────────────────────────── */
-app.use((req, res) => {
-    res.status(404).set('Cache-Control', 'no-cache').send(`<!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page Not Found | Shraddha Saburi Stone</title>
-<meta name="robots" content="noindex">
-<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}body{background:#030303;color:#fff;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px}h1{font-size:80px;font-weight:300;color:rgba(217,176,98,0.2);line-height:1;margin-bottom:16px}p{font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:30px}a{color:#D9B062;text-decoration:none;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(217,176,98,0.25);padding:12px 28px;margin:6px;display:inline-block}</style></head>
-<body><div><h1>404</h1><p>This page doesn't exist.</p><a href="/">Home</a><a href="/products">Products</a><a href="/quote">Get Quote</a></div></body></html>`);
-});
-
-/* ── Static files ────────────────────────────────────────────── */
+/* ── Static files (MUST be before 404 handler) ───────────────── */
 app.get('/favicon.ico',      (_req, res) => res.sendFile(path.join(__dirname,'public','favicon.ico')));
 app.get('/site.webmanifest', (_req, res) => res.sendFile(path.join(__dirname,'public','site.webmanifest')));
 app.use('/public', express.static(path.join(__dirname,'public'), {
@@ -983,6 +973,16 @@ app.use('/public', express.static(path.join(__dirname,'public'), {
     }
 }));
 app.use('/uploads', express.static(path.join(__dirname,'uploads'), { maxAge: '0' }));
+
+/* ── 404 page ────────────────────────────────────────────────── */
+app.use((req, res) => {
+    res.status(404).set('Cache-Control', 'no-cache').send(`<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page Not Found | Shraddha Saburi Stone</title>
+<meta name="robots" content="noindex">
+<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}body{background:#030303;color:#fff;font-family:'Inter',sans-serif;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:40px}h1{font-size:80px;font-weight:300;color:rgba(217,176,98,0.2);line-height:1;margin-bottom:16px}p{font-size:13px;color:rgba(255,255,255,0.3);margin-bottom:30px}a{color:#D9B062;text-decoration:none;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;border:1px solid rgba(217,176,98,0.25);padding:12px 28px;margin:6px;display:inline-block}</style></head>
+<body><div><h1>404</h1><p>This page doesn't exist.</p><a href="/">Home</a><a href="/products">Products</a><a href="/quote">Get Quote</a></div></body></html>`);
+});
 
 /* ── Start ───────────────────────────────────────────────────── */
 app.listen(PORT, () => {
