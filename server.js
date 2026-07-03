@@ -83,15 +83,16 @@ app.set('trust proxy', 1);
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: ["'self'"],
-            scriptSrc:  ["'self'","'unsafe-inline'","https://cdnjs.cloudflare.com","https://cdn.jsdelivr.net","https://fonts.googleapis.com","https://www.googletagmanager.com","https://www.clarity.ms","https://cdn.clarity.ms"],
-            styleSrc:   ["'self'","'unsafe-inline'","https://fonts.googleapis.com","https://cdnjs.cloudflare.com"],
-            fontSrc:    ["'self'","https://fonts.gstatic.com","data:"],
-            imgSrc:     ["'self'","data:","https:","blob:"],
-            mediaSrc:   ["'self'","blob:"],
-            connectSrc: ["'self'","https://www.google-analytics.com","https://analytics.google.com","https://www.clarity.ms"],
-            frameSrc:   ["'none'"],
-            objectSrc:  ["'none'"],
+            defaultSrc:    ["'self'"],
+            scriptSrc:     ["'self'","'unsafe-inline'","https://cdnjs.cloudflare.com","https://cdn.jsdelivr.net","https://fonts.googleapis.com","https://www.googletagmanager.com","https://www.clarity.ms","https://cdn.clarity.ms"],
+            scriptSrcAttr: ["'unsafe-inline'"],
+            styleSrc:      ["'self'","'unsafe-inline'","https://fonts.googleapis.com","https://cdnjs.cloudflare.com"],
+            fontSrc:       ["'self'","https://fonts.gstatic.com","data:"],
+            imgSrc:        ["'self'","data:","https:","blob:"],
+            mediaSrc:      ["'self'","blob:"],
+            connectSrc:    ["'self'","https://www.google-analytics.com","https://analytics.google.com","https://www.clarity.ms","https://*.googleapis.com"],
+            frameSrc:      ["'self'","https://maps.google.com","https://www.google.com","https://maps.googleapis.com"],
+            objectSrc:     ["'none'"],
         }
     },
     crossOriginEmbedderPolicy: false,
