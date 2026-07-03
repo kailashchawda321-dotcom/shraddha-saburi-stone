@@ -1,0 +1,99 @@
+[
+  {
+    "slug": "temple-projects",
+    "title": "Temple Projects",
+    "category": "temple",
+    "tagline": "Sacred construction across India",
+    "description": "Over two decades of supplying premium Jaisalmer sandstone for temple construction projects across India. From village mandirs to grand temple complexes, our stone has graced thousands of sacred spaces.",
+    "imageFolder": "temple-projects",
+    "location": "Pan India",
+    "completionYear": "2024",
+    "materials": ["Jaisalmer Yellow Sandstone Grade A", "CNC-carved pillars", "Hand-carved shikhara elements", "Stone jali screens"],
+    "specifications": {
+      "Projects Completed": "200+",
+      "States Covered": "Rajasthan, Gujarat, UP, Maharashtra, Tamil Nadu",
+      "Stone Supplied": "Temple Grade A Jaisalmer Sandstone",
+      "Techniques": "Hand carving + CNC machining"
+    }
+  },
+  {
+    "slug": "heritage-architecture",
+    "title": "Heritage Architecture",
+    "category": "heritage",
+    "tagline": "Restoring India's stone legacy",
+    "description": "Expert stone supply for heritage restoration projects including havelis, stepwells, colonial buildings, and historic temples. We match existing stone grades for seamless restoration.",
+    "imageFolder": "heritage-architecture",
+    "location": "Rajasthan & Pan India",
+    "completionYear": "2024",
+    "materials": ["Heritage-matched Jaisalmer Sandstone", "Aged finish stone", "Custom carved replacement elements"],
+    "specifications": {
+      "Heritage Projects": "50+",
+      "Stone Matching": "By quarry and grade analysis",
+      "Finishes Available": "Aged, Weathered, Natural, Honed"
+    }
+  },
+  {
+    "slug": "jali-designs",
+    "title": "Jali Design Gallery",
+    "category": "jali",
+    "tagline": "Light through ancient patterns",
+    "description": "Our portfolio of stone jali screens spans traditional Rajasthani geometric patterns to contemporary minimalist designs. Used in residential, commercial and temple projects worldwide.",
+    "imageFolder": "jali-designs",
+    "location": "India + UAE + USA + UK",
+    "completionYear": "2024",
+    "materials": ["38mm Jaisalmer Sandstone Jali", "50mm structural jali panels", "Custom CNC-carved screens"],
+    "specifications": {
+      "Jali Projects": "500+ panels",
+      "Pattern Types": "Geometric, Floral, Custom, Arabesque",
+      "Export Destinations": "UAE, USA, UK, Australia, Canada"
+    }
+  },
+  {
+    "slug": "stone-cladding",
+    "title": "Stone Cladding Projects",
+    "category": "cladding",
+    "tagline": "Walls transformed in golden stone",
+    "description": "Stone cladding portfolio showcasing interior and exterior applications. From luxury villa facades to commercial building fronts and heritage hotel interiors.",
+    "imageFolder": "stone-cladding",
+    "location": "India + Export",
+    "completionYear": "2024",
+    "materials": ["25–50mm Jaisalmer Sandstone Cladding", "Honed and natural finish panels"],
+    "specifications": {
+      "Cladding Area Supplied": "100,000+ sq ft",
+      "Application Types": "Interior + Exterior",
+      "Finishes": "Natural, Honed, Bush-hammered, Sawn"
+    }
+  },
+  {
+    "slug": "decorative-pillars",
+    "title": "Decorative Pillars",
+    "category": "pillars",
+    "tagline": "Structural artistry in stone",
+    "description": "Portfolio of decorative stone pillars and columns. Classical fluted columns, ornate temple pillars, modern smooth columns — all hand-crafted or CNC-machined in Jaisalmer sandstone.",
+    "imageFolder": "decorative-pillars",
+    "location": "Pan India + Export",
+    "completionYear": "2024",
+    "materials": ["Solid Jaisalmer Sandstone Pillars", "Drum-constructed columns", "CNC-fluted shafts"],
+    "specifications": {
+      "Pillars Made": "1000+",
+      "Height Range": "2ft – 20ft",
+      "Styles": "Classical, Temple, Modern, Custom"
+    }
+  },
+  {
+    "slug": "custom-carvings",
+    "title": "Custom Stone Carvings",
+    "category": "carvings",
+    "tagline": "Any form, any vision — carved in stone",
+    "description": "Bespoke carved stone portfolio. Deity figures, decorative panels, architectural reliefs, garden sculptures and corporate art pieces crafted by master shilpis.",
+    "imageFolder": "custom-carvings",
+    "location": "India + Worldwide",
+    "completionYear": "2024",
+    "materials": ["Premium Jaisalmer Sandstone", "Selected stone grades per project"],
+    "specifications": {
+      "Custom Pieces": "5000+",
+      "Techniques": "Hand carving, CNC, Combined",
+      "Sizes": "6 inches to 20 feet"
+    }
+  }
+]
