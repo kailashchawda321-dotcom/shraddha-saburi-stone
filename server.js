@@ -68,8 +68,9 @@ function esc(str) {
 }
 
 /* ── page routes ──────────────────────────────────────────── */
-app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'index.html')));
-app.get('/category', (_req, res) => res.sendFile(path.join(__dirname, 'category.html')));
+const NO_CACHE = { headers: { 'Cache-Control': 'no-cache, must-revalidate' } };
+app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'index.html'), NO_CACHE));
+app.get('/category', (_req, res) => res.sendFile(path.join(__dirname, 'category.html'), NO_CACHE));
 app.get('/seo/:page', (req, res) => {
     const page = req.params.page.replace(/[^a-z0-9-]/gi, '');
     const file = path.join(__dirname, 'public', 'seo', page + '.html');
@@ -215,8 +216,12 @@ app.use('/public', express.static(path.join(__dirname, 'public'), {
     maxAge: '7d',
     acceptRanges: true,
     setHeaders(res, filePath) {
-        if (IMAGE_EXTS.has(path.extname(filePath).toLowerCase())) {
+        const ext = path.extname(filePath).toLowerCase();
+        if (IMAGE_EXTS.has(ext)) {
             res.setHeader('Cache-Control', 'public, max-age=604800, immutable');
+        } else if (VIDEO_EXTS.has(ext)) {
+            /* Videos can be replaced — revalidate every hour via ETag */
+            res.setHeader('Cache-Control', 'public, max-age=3600, must-revalidate');
         }
     }
 }));
